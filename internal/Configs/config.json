@@ -1,0 +1,13 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": ":8080"
+  },
+  "db": {
+    "host": "localhost",
+    "port": "5432",
+    "user": "khalif",
+    "password": "khaliftursunzoda",
+    "database": "khalifat"
+  }
+}
