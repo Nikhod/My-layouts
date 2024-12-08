@@ -6,12 +6,13 @@ import (
 	"Nikcase/internal/repositories"
 	"Nikcase/internal/services"
 	"Nikcase/pkg/database"
+	"Nikcase/pkg/solutions"
 	"log"
 	"net/http"
 )
 
 func main() {
-	
+	solutions.ReadFileWithGoroutine()
 }
 
 func execute() {

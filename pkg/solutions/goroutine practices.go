@@ -4,7 +4,6 @@ import (
 	"Nikcase/pkg/models"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"math/rand"
 	"os"
@@ -79,12 +78,7 @@ func TotalSumOfTwoChan(firstChan chan int, secondChan chan int) (int, int) {
 
 		// в цикле таким образом мы проверим закрыты ли оба канала или  нет
 		if firstChan == nil && secondChan == nil {
-			//totalSumOfFirstChan <- firstTotal
-			//totalSumOFSecondChan <- secondTotal
-
-			fmt.Printf("first Total: %d\nsecond total: %d\n", firstTotal, secondTotal)
 			return firstTotal, secondTotal
-			//return totalSumOfFirstChan, totalSumOFSecondChan
 		}
 	}
 }
@@ -108,10 +102,10 @@ func TotalSumOfNumberInTwoChannels() {
 		close(secondChan)
 	}()
 
-	TotalSumOfTwoChan(firstChan, secondChan)
+	firstTotal, secondTotal := TotalSumOfTwoChan(firstChan, secondChan)
 
 	wg.Wait()
-	log.Printf("total was decided,\nfrom first chan: %d\nfrom second chan: %d\n")
+	log.Printf("total was decided,\nfrom first chan: %d\nfrom second chan: %d\n", firstTotal, secondTotal)
 }
 
 func ChooseOneOption(dataChan chan int, exit chan string) {
@@ -169,35 +163,34 @@ func ReadFileWithGoroutine() {
 	var wg sync.WaitGroup
 	pocket := make(chan models.Users)
 	wg.Add(1)
-
 	go func() {
 		defer wg.Done()
 		var user models.Users
-		var mtx sync.Mutex
 
-		mtx.Lock()
-		file, err := os.OpenFile("./example.json", os.O_WRONLY|os.O_RDWR, 0666)
+		bytesInFile, err := os.ReadFile("example.json")
 		if err != nil {
 			log.Println(err)
+			close(pocket)
 			return
 		}
 
-		bytes, err := io.ReadAll(file)
+		err = json.Unmarshal(bytesInFile, &user)
 		if err != nil {
 			log.Println(err)
+			close(pocket)
 			return
 		}
-
-		err = json.Unmarshal(bytes, &user)
-		if err != nil {
-			log.Println(err)
-			return
-		}
-		mtx.Unlock()
 
 		pocket <- user
+		close(pocket)
 	}()
-	wg.Wait()
 
-	fmt.Println(<-pocket)
+	if user, isOpen := <-pocket; isOpen {
+		fmt.Println(user)
+	} else {
+		fmt.Println("no data were received")
+	}
+	wg.Wait()
+	
+	fmt.Println("code after processing data in goroutine and after reading that from MAIN goroutine")
 }
