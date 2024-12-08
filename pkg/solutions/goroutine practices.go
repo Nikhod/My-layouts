@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func WorkWithChannels() {
+func OrdinaryExampleWorkingWithChannel() {
 	var wg sync.WaitGroup
 	firstChan := make(chan int)
 
@@ -144,7 +144,7 @@ func CountUntiln(n int) {
 	fmt.Println("THE COUNT IS OVER")
 }
 
-func CorrectWayOfChangingDataWithGoroutines() {
+func CorrectUsageOfMutex() {
 	var wg sync.WaitGroup
 
 	var mutex sync.Mutex
@@ -155,7 +155,7 @@ func CorrectWayOfChangingDataWithGoroutines() {
 		go func(index, number int) {
 			mutex.Lock()
 			results[index] = FindSquare(number)
-			time.Sleep(time.Second)
+			time.Sleep(time.Second) // imitation of work
 			fmt.Println(results)
 			mutex.Unlock()
 		}(index, aNumber)
@@ -165,7 +165,7 @@ func CorrectWayOfChangingDataWithGoroutines() {
 	log.Println(results)
 }
 
-func ExampleWorkingWithGoroutine() {
+func ReadFileWithGoroutine() {
 	var wg sync.WaitGroup
 	pocket := make(chan models.Users)
 	wg.Add(1)
