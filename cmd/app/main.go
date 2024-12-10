@@ -12,7 +12,8 @@ import (
 )
 
 func main() {
-	solutions.ReadFileWithGoroutine()
+	//solutions.ReadFileWithNumerousGoroutines()
+	solutions.ReadOneFileWithNumerousGoroutines()
 }
 
 func execute() {
