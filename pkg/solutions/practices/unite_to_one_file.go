@@ -8,9 +8,14 @@ import (
 	"sync"
 )
 
+/*
+this function has two issues:
+- 1) the queue of file parts is unconstantable
+- 2) last string of each file is lost during the transfer
+*/
 func UniteToOneFile() {
 	var wg sync.WaitGroup
-	resultChanWithData := make(chan []byte)
+	resultChanWithData := make(chan []byte, 4)
 
 	var fileNames = []string{
 		"first_file.txt",
