@@ -6,13 +6,13 @@ import (
 	"Nikcase/internal/repositories"
 	"Nikcase/internal/services"
 	"Nikcase/pkg/database"
-	"Nikcase/pkg/solutions"
+	"Nikcase/pkg/solutions/practices"
 	"log"
 	"net/http"
 )
 
 func main() {
-	solutions.UniteToOneFile()
+	practices.UniteToOneFile()
 }
 
 func execute() {
