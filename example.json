@@ -1,9 +1,42 @@
-{
-  "id": 1,
-  "name": "nihod",
-  "login": "tursunzoda",
-  "password": "nadonado",
-  "active": true,
-  "token": "tokens"
-}
-
+[
+  {
+    "id": 1,
+    "name": "nihod",
+    "login": "tursunzoda",
+    "password": "nadonado",
+    "active": true,
+    "token": "tokens"
+  },
+  {
+    "id": 1,
+    "name": "John",
+    "login": "jdoe",
+    "password": "password123",
+    "active": true,
+    "token": "abc123def456"
+  },
+  {
+    "id": 2,
+    "name": "Jane",
+    "login": "jsmith",
+    "password": "pass456",
+    "active": false,
+    "token": "ghi789jkl"
+  },
+  {
+    "id": 3,
+    "name": "Mike",
+    "login": "mjohn",
+    "password": "mypass",
+    "active": true,
+    "token": "mno123pqr"
+  },
+  {
+    "id": 4,
+    "name": "Emily",
+    "login": "edavis",
+    "password": "emilypass",
+    "active": false,
+    "token": "stu456vwx"
+  }
+]
