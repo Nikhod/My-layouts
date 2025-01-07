@@ -98,7 +98,3 @@ type (
 		gadget
 	}
 )
-
-/* todo play with second point in explaining of gemeni, change data in method, return self pointer and develop
-todo the chain of actions with method like GORM
-*/
