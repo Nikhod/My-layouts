@@ -2,32 +2,32 @@ package other_practices
 
 import "fmt"
 
-type Person struct {
+type Human struct {
 	name string // неэкспортированное поле
 	Age  int    // экспортированное поле
 }
 
-// Экспортированная функция для создания нового объекта Person
-func NewPerson(name string, age int) *Person {
-	return &Person{name: name, Age: age}
+// Экспортированная функция для создания нового объекта Human
+func NewHuman(name string, age int) *Human {
+	return &Human{name: name, Age: age}
 }
 
 // Экспортированная функция
 // для получения имени - GETTER
-func (p *Person) GetName() string {
+func (p *Human) GetName() string {
 	return p.name
 }
 
 // Экспортированная функция
 // для установки имени - SETTER
-func (p *Person) SetName(name string) {
+func (p *Human) SetName(name string) {
 	p.name = name
 }
 
 // предположим что эта функция была
 // ининциализирована в другом пакете
 func FirstEncapsulationPractice() {
-	person := NewPerson("Alice", 30)
+	person := NewHuman("Alice", 30)
 	age := person.Age
 	name := person.GetName()
 	fmt.Printf("old data about person: %v\t%v\n", age, name)
