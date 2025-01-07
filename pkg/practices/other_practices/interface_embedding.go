@@ -4,8 +4,24 @@ import "fmt"
 
 // interface embedding and classic basic structure one
 
-func Practice() {
-	var myPhone = phone{
+func FirstInterfaceEmbeddingPractice() {
+	myComputer := computer{
+		gadget: gadget{
+			brand:            "McBook",
+			producer:         "Taiwan",
+			dateOfProduction: "yesterday",
+			status:           false,
+		},
+	}
+	myTablet := tablet{
+		gadget: gadget{
+			brand:            "ipad",
+			producer:         "FAXCON",
+			dateOfProduction: "yesterday",
+			status:           false,
+		},
+	}
+	myPhone := phone{
 		gadget: gadget{
 			brand:            "iphone",
 			producer:         "USA",
@@ -14,11 +30,18 @@ func Practice() {
 		},
 	}
 
-	SomeAction(&myPhone)
+	myDevices := []Devices{
+		&myPhone,
+		&myComputer,
+		&myTablet,
+	}
+
+	//one can use the cycle "for"
+	SomeAction(myDevices[1])
 
 }
 
-func SomeAction(device Device) {
+func SomeAction(device Devices) {
 	device.TurnON()
 	myGadget := device.GetInfo()
 	fmt.Printf("info: %+v\n", myGadget)
@@ -33,7 +56,7 @@ type Stopper interface {
 	TurnOFF()
 }
 
-type Device interface {
+type Devices interface {
 	Starter
 	Stopper
 	GetInfo() *gadget
