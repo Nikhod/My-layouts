@@ -41,6 +41,7 @@ func FirstInterfaceEmbeddingPractice() {
 
 }
 
+// chief function
 func SomeAction(device Devices) {
 	device.TurnON()
 	myGadget := device.GetInfo()
@@ -80,6 +81,7 @@ func (g *gadget) TurnOFF() {
 	fmt.Println("device is turned off")
 }
 
+// embedding is used here
 type (
 	gadget struct {
 		brand            string
