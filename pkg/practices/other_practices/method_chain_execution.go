@@ -26,7 +26,7 @@ type (
 		dateOfBirth time.Time
 		breed       string
 		animal      string
-		master
+		master      // embedding
 	}
 
 	master struct {
@@ -69,6 +69,7 @@ func (p *Pet) SetBreed(breed string) *Pet {
 	return p
 }
 
+// print information about Pet
 func (p *Pet) GetInfo() {
 	fmt.Printf("animalName: %v\nage: %v\nbreed: %v\nanimal: %v\nmster name: %v\naddress: %v\n",
 		p.animalName, p.age, p.breed, p.animal, p.master.name, p.address)
