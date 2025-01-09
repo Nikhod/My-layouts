@@ -1,4 +1,4 @@
-package other_practices
+package oop
 
 import (
 	"fmt"
