@@ -26,7 +26,7 @@ type (
 		dateOfBirth time.Time
 		breed       string
 		animal      string
-		master      // embedding
+		master      // embedding structure
 	}
 
 	master struct {
