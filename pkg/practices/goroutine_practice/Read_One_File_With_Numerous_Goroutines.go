@@ -1,4 +1,4 @@
-package practices
+package goroutine_practice
 
 import (
 	"fmt"
