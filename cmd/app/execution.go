@@ -5,10 +5,15 @@ import (
 	"Nikcase/internal/handlers"
 	"Nikcase/internal/repositories"
 	"Nikcase/internal/services"
+	"Nikcase/pkg/cache"
 	"Nikcase/pkg/database"
+	"gorm.io/gorm"
 	"log"
 	"net/http"
 )
+
+var DB *gorm.DB
+var CACHED cache.CachedLimits
 
 func execute() {
 	// Инициализация Конфигов

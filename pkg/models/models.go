@@ -61,3 +61,13 @@ type (
 		Token string
 	}
 )
+
+type AmountLimits struct {
+	Id        int
+	Min       int
+	Max       int
+	ServiceId int
+	AgentId   int
+	CurrName  string
+	Active    bool
+}
