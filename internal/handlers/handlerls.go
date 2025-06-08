@@ -3,12 +3,17 @@ package handlers
 import (
 	"Nikcase/internal/services"
 	"Nikcase/pkg/Helper"
+	"Nikcase/pkg/cache"
 	"Nikcase/pkg/models"
 	"encoding/json"
+	"gorm.io/gorm"
 	"log"
 	"net/http"
 	"time"
 )
+
+var CACHED cache.CachedLimits
+var DB *gorm.DB
 
 type Handlers struct {
 	Service *services.Service
@@ -74,4 +79,10 @@ func (h *Handlers) CreateLimit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	CACHED.SetLimit()
+
+}
+
+func SetLimitToDB() error {
+	DB.Create()
 }
