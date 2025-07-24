@@ -1,4 +1,4 @@
-package closure
+package func_is_argument
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 	"sync"
 )
 
-// Cup - a storage of slice of int
-type Cup struct {
+// Storage - a storage of slice of int
+type Storage struct {
 	store []int
 }
 
@@ -18,7 +18,7 @@ type Cup struct {
 //(как в твоём случае).
 //✅ Чтение из закрытого канала — безопасно, и range завершит итерацию корректно.
 
-func (c *Cup) eachElementOfBufferedCup(pocket chan int, read func(pocketInRead chan int)) {
+func (c *Storage) eachElementOfBufferedCup(pocket chan int, read func(pocketInRead chan int)) {
 	for i := 0; i < len(c.store); i++ {
 		pocket <- c.store[i]
 	}
@@ -29,7 +29,7 @@ func (c *Cup) eachElementOfBufferedCup(pocket chan int, read func(pocketInRead c
 }
 
 func BufferedCupPractice() {
-	from := Cup{store: []int{12, 20, 13, 5, 100}}
+	from := Storage{store: []int{12, 20, 13, 5, 100}}
 	var pocketMain = make(chan int, len(from.store))
 
 	from.eachElementOfBufferedCup(pocketMain, func(pocketInClosure chan int) {
@@ -48,7 +48,7 @@ func BufferedCupPractice() {
 //Используй defer close(chan) после всех записей, и range chan для чтения.
 //Для синхронизации — sync.WaitGroup.
 
-func (c *Cup) eachElementOfUnbufferedCup(wg *sync.WaitGroup, pocket chan int, read func(pocketInRead chan int)) {
+func (c *Storage) eachElementOfUnbufferedCup(wg *sync.WaitGroup, pocket chan int, read func(pocketInRead chan int)) {
 	defer wg.Done()
 	defer close(pocket)
 
@@ -60,7 +60,7 @@ func (c *Cup) eachElementOfUnbufferedCup(wg *sync.WaitGroup, pocket chan int, re
 }
 
 func UnbufferedCupPractice() {
-	from := Cup{store: []int{12, 20, 13, 5, 100}}
+	from := Storage{store: []int{12, 20, 13, 5, 100}}
 	var wg sync.WaitGroup
 	var pocketMain = make(chan int)
 

@@ -1,4 +1,4 @@
-package closure
+package func_is_argument
 
 import "log"
 
@@ -19,6 +19,9 @@ func FilterPractice() {
 
 }
 func filterWithFilterFunc(num int, predicate func(isValid int) bool) bool {
+	// logic before the calling func
+	// тут может быть логика до вызова функции, но обычно, в случае с фильтрами эта логика может либо отсутствовать,
+	// либо это может быть логика связананная с приведением данных
 	return predicate(num)
 }
 
