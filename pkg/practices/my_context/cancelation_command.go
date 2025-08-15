@@ -9,8 +9,7 @@ import (
 
 // у нас есть сервисы такси, мы делаем поиск самого быстрого (это условие будет симитировано ниже заглушкой)
 // как только мы нашли самый быстрый, мы печатаем название его в консоль
-
-//my_context.WithDeadline() = my_context.WithTimeout()
+// my_context.WithDeadline() = my_context.WithTimeout()
 
 func ContextPractice() {
 	var (
