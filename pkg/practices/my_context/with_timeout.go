@@ -13,7 +13,7 @@ var lifetime = time.Second * 5
 // запрос будет жить lifetime времени. Если все компоненты этого запроса не успеют выполнится в течение этого времени
 // запрос просто перестанет существовать
 func createRequestSampleWithTimeout(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(context.Background(), lifetime)
+	ctx, cancel := context.WithTimeout(r.Context(), lifetime)
 	defer cancel()
 	var value innerService
 	_ = json.NewDecoder(r.Body).Decode(&value)
