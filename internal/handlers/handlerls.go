@@ -70,19 +70,3 @@ func (h *Handlers) GetToken(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("Finish!")
 }
-
-func (h *Handlers) CreateLimit(w http.ResponseWriter, r *http.Request) {
-	var limit models.AmountLimits
-	err := json.NewDecoder(r.Body).Decode(&limit)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	CACHED.SetLimit()
-
-}
-
-func SetLimitToDB() error {
-	DB.Create()
-}
